@@ -49,10 +49,13 @@ The numerical data is lodged in an instance of
 the HDF Scalable Data Service, at `http://hsdshdflab.hdfgroup.org`.
 
 ```{r lklo}
-library(HumanTranscriptomeCompendium)
-genelev = htx_load()
-genelev
-assay(genelev)
+v = BiocManager::version()
+if (v >= "3.10") {
+ library(HumanTranscriptomeCompendium)
+ genelev = htx_load()
+ genelev
+ assay(genelev)
+}
 ```
 
 ## Identifying single-cell RNA-seq studies
@@ -60,9 +63,11 @@ assay(genelev)
 We use crude pattern-matching in the study titles
 to identify single cell RNA-seq experiments 
 ```{r lksi}
+if (v >= "3.10") {
 sing = grep("single.cell", genelev$study_title, 
    ignore.case=TRUE)
 length(sing)
+}
 ```
 
 Now we will determine which studies are involved.
@@ -70,30 +75,36 @@ We will check out the titles of the single-cell
 studies to assess the specificity of this approach.
 
 ```{r chkspec}
+if (v >= "3.10") {
 sa = genelev$study_accession[sing]
 sing2 = sing[-which(duplicated(sa))]
 length(sing2)
 datatable(as.data.frame(colData(genelev[,sing2])),
    options=list(lengthMenu=c(3,5,10,50,100)))
+}
 ```
 
 ## Collecting bulk RNA-seq samples on a disease of interest: glioblastoma
 
 
 ```{r lkchar}
+if (v >= "3.10") {
 bulk = genelev[,-sing]
 kpglio = grep("glioblastoma", bulk$study_title, 
   ignore.case=TRUE)
 glioGene = bulk[,kpglio]
 glioGene
+}
 ```
 
 To acquire numerical values, `as.matrix(assay())` is needed.
 ```{r lkmat}
+if (v >= "3.10") {
 beeswarm(as.matrix(assay(
    glioGene["ENSG00000138413.13",1:100])), pwcol=as.numeric(factor(glioGene$study_title[1:100])), ylab="IDH1 expression")
 legend(.6, 15000, legend=unique(glioGene$study_accession[1:100]),
    col=1:2, pch=c(1,1))
+}
 ```
 
 # Access to transcript-level quantifications
@@ -108,8 +119,10 @@ array, with names 'X0' and 'X0.1', that should
 be ignored.
 
 ```{r dotx, eval=FALSE}
+if (v >= "3.10") {
 txlev = htx_load(genesOnly=FALSE)
 txlev
+}
 ```
 
 # Resources of the HumanTranscriptomeCompendium package
