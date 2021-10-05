@@ -47,7 +47,7 @@ htx_check_cache = function (cache = BiocFileCache::BiocFileCache(), genesOnly=TR
 #' @examples
 #' htx_load
 #' @export
-htx_load = function (remotePath = "https://s3.amazonaws.com/bcfound-bigrna/htxcompSE.rds",
+htx_load = function (remotePath = "https://biocfound-bigrnatx.s3.us-west-2.amazonaws.com/rangedHtxGeneSE.rds",
     cache = BiocFileCache::BiocFileCache(), genesOnly=TRUE)
 {
     if (!genesOnly) stop("transcript-level quantifications not available currently")

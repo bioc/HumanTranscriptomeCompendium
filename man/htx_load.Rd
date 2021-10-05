@@ -5,7 +5,8 @@
 \title{load a SummarizedExperiment shell for the Human Transcriptome Compendium}
 \usage{
 htx_load(
-  remotePath = "https://s3.amazonaws.com/bcfound-bigrna/htxcompSE.rds",
+ 
+    remotePath = "https://biocfound-bigrnatx.s3.us-west-2.amazonaws.com/rangedHtxGeneSE.rds",
   cache = BiocFileCache::BiocFileCache(),
   genesOnly = TRUE
 )
