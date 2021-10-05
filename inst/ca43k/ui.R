@@ -17,11 +17,13 @@ sefilter = function(se, y) se[,which(se$study_accession %in% y)]
 # precede those with special characters or numbers
 #
  allkw = sort(unique(ls(envir=kw2docs(docs))))
+print(length(allkw))
  ini = substr(allkw,1,1)
  fullinds = seq_len(length(allkw))
  preferred = grep("[A-Za-z]", ini)
  spec = setdiff(fullinds, preferred)
  allkw = allkw[c(preferred, spec)]
+print(length(allkw))
  dlmessage = ifelse(is.null(se), "download list of data.frames",
        "download SE")
 #

@@ -18,7 +18,7 @@
 #' @examples
 #' # this example involves nontrivial internet communications
 #' args(procExpToGene)
-#' \dontrun{
+#' \donttest{
 #' td = tempdir()
 #' od = getwd()
 #' setwd(td)
