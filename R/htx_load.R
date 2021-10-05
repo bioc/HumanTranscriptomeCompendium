@@ -45,12 +45,12 @@ htx_check_cache = function (cache = BiocFileCache::BiocFileCache(), genesOnly=TR
 #' @examples
 #' htx_load
 #' @export
-htx_load = function (remotePath = "https://s3.amazonaws.com/bcfound-bigrna/htxcompSE.rds",
+htx_load = function (remotePath = "https://biocfound-bigrnatx.s3.us-west-2.amazonaws.com/rangedHtxGeneSE.rds",
     cache = BiocFileCache::BiocFileCache(), genesOnly=TRUE)
 {
     if (!genesOnly) stop("transcript-level quantifications not available currently")
     if (!requireNamespace("BiocFileCache")) stop("install BiocFileCache to use this function")
-    if (genesOnly) remotePath = "https://s3.amazonaws.com/bcfound-bigrna/rangedHtxGeneSE.rds"
+    if (genesOnly) remotePath = "https://biocfound-bigrnatx.s3.us-west-2.amazonaws.com/rangedHtxGeneSE.rds"
     chkans = htx_check_cache(cache)
     if (chkans[1] == "install") {
         message("adding RDS to local cache, future invocations will use local image")

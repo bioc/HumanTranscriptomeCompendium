@@ -5,10 +5,13 @@
 \title{acquire a single sample from bigRNA compendium specified by accession
 and develop gene-level quantifications using tximport}
 \usage{
-procExpToGene(acc, tx2gene = tx2gene_gencode27(),
+procExpToGene(
+  acc,
+  tx2gene = tx2gene_gencode27(),
   urlprefix = "http://bigrna-test.cancerdatasci.org/data/?accession=",
   manifestdata = HumanTranscriptomeCompendium::load_bigrnaFiles(),
-  regexp = "quant.sf.bz2|json")
+  regexp = "quant.sf.bz2|json"
+)
 }
 \arguments{
 \item{acc}{character(1) sample-level accession as defined in SRA}
@@ -42,7 +45,7 @@ folders to be used by tximport.
 \examples{
 # this example involves nontrivial internet communications
 args(procExpToGene)
-\dontrun{
+\donttest{
 td = tempdir()
 od = getwd()
 setwd(td)
