@@ -5,8 +5,8 @@
 \title{load a SummarizedExperiment shell for the Human Transcriptome Compendium}
 \usage{
 htx_load(
- 
-    remotePath = "https://biocfound-bigrnatx.s3.us-west-2.amazonaws.com/rangedHtxGeneSE.rds",
+  remotePath =
+    "https://biocfound-bigrnatx.s3.us-west-2.amazonaws.com/rangedHtxGeneSE.rds",
   cache = BiocFileCache::BiocFileCache(),
   genesOnly = TRUE
 )
@@ -28,5 +28,9 @@ a RangedSummarizedExperiment instance
 load a SummarizedExperiment shell for the Human Transcriptome Compendium
 }
 \examples{
-htx_load
+if (interactive()) {
+  h = htx_load()
+  h
+  SummarizedExperiment::assay(h)
+  }
 }
