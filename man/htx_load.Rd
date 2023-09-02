@@ -5,21 +5,23 @@
 \title{load a SummarizedExperiment shell for the Human Transcriptome Compendium}
 \usage{
 htx_load(
-  remotePath =
-    "https://biocfound-bigrnatx.s3.us-west-2.amazonaws.com/rangedHtxGeneSE.rds",
+  remotePath = NULL,
   cache = BiocFileCache::BiocFileCache(),
   genesOnly = TRUE
 )
 }
 \arguments{
-\item{remotePath}{path to an RDS representation of the DelayedArray-based SummarizedExperiment}
+\item{remotePath}{defaults to NULL, will be removed in future version}
 
 \item{cache}{a BiocFileCache instance, defaulting to value of BiocFileCache()}
 
 \item{genesOnly}{logical(1) if TRUE return reference to 
 SummarizedExperiment with gene-level quantifications; in this 
 case the remotePath value is
-set to `https://s3.amazonaws.com/bcfound-bigrna/rangedHtxGeneSE.rds`.}
+set to `https://s3.amazonaws.com/bcfound-bigrna/rangedHtxGeneSE.rds`.
+As of Bioc 3.17, changes to S4Vectors necessitate different remote images
+or redesign of handling HSDS instances.  Thus remotePath parameter is dropped
+and version-specific code is added to the loader to select an appropriate path.}
 }
 \value{
 a RangedSummarizedExperiment instance

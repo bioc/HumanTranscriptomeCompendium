@@ -30,7 +30,7 @@ htx_check_cache = function (cache = BiocFileCache::BiocFileCache(), genesOnly=TR
     else qans = BiocFileCache::bfcquery(cache, "htxcompSE.rds") # transcript-level
     if (nrow(qans)<1) return(c("install", NA))
     chkupdate = BiocFileCache::bfcneedsupdate(cache, qans$rid[1])
-    if (chkupdate) return(c("update", rid=qans$rid[1]))
+    if (isTRUE(chkupdate) | is.na(chkupdate)) return(c("update", rid=qans$rid[1]))
     c("ok", qans$rid[1])
 }
 
@@ -39,6 +39,7 @@ htx_check_cache = function (cache = BiocFileCache::BiocFileCache(), genesOnly=TR
 #' load a SummarizedExperiment shell for the Human Transcriptome Compendium
 #' @importFrom S4Vectors mcols
 #' @importFrom SummarizedExperiment rowRanges rowData<-
+#' @import BiocManager
 #' @param remotePath defaults to NULL, will be removed in future version
 #' @param cache a BiocFileCache instance, defaulting to value of BiocFileCache()
 #' @param genesOnly logical(1) if TRUE return reference to 
