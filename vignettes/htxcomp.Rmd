@@ -91,8 +91,8 @@ glioGene
 To acquire numerical values, `as.matrix(assay())` is needed.
 ```{r lkmat}
 if (rhdf5client::check_hsds()) {
- beeswarm(as.matrix(assay(
-   glioGene["ENSG00000138413.13",1:100])), pwcol=as.numeric(factor(glioGene$study_title[1:100])), ylab="IDH1 expression")
+ beeswarm(unname(as.matrix(assay(
+   glioGene["ENSG00000138413.13",1:100]))), pwcol=as.numeric(factor(glioGene$study_title[1:100])), ylab="IDH1 expression")
  legend(.6, 15000, legend=unique(glioGene$study_accession[1:100]),
    col=1:2, pch=c(1,1))
 }
